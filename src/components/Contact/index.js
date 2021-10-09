@@ -21,22 +21,13 @@ constructor(props) {
     super(props);
      this.state = {
         contactList: newArr,
+        sortName: false,
+        sortPopularity: false,
     }
     // this.addRandomContact = this.addRandomContact.bind(this)
 
 }
 
-// checkIfExists = () =>{
-//     const randomIndex = Math.floor(Math.random() * Contacts.length)
-
-//     newArr.filter((contact) => {
-//         if(Contacts[randomIndex].id === contact.id){
-//             console.log('exists')
-//         }
-//     })
-// }
-
-   
 addRandomContact =  () => {
     const randomIndex = Math.floor(Math.random() * Contacts.length)
     const newContact = Contacts[randomIndex]
@@ -53,17 +44,41 @@ addRandomContact =  () => {
 }
 
 sortByName = () => {
-     newArr.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0))
+
+    if(this.state.sortName === false) {
+        newArr.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0))
     this.setState({
         contactList: newArr,
+        sortName: true,
     })
+    }else if(this.state.sortName === true){
+        newArr.sort((a, b) => (a.name < b.name) ? 1 : ((b.name < a.name) ? -1 : 0))
+    this.setState({
+        contactList: newArr,
+        sortName: false,
+    })
+    }
+     
 }
 
 sortByPopularity = () => {
+
+if(this.state.sortPopularity === false){
     newArr.sort((a, b) => a.popularity - b.popularity) 
     this.setState({
         contactList: newArr,
+        sortPopularity: true,
     })
+}else if(this.state.sortPopularity === true){
+    newArr.sort((a, b) =>  b.popularity - a.popularity ) 
+    this.setState({
+        contactList: newArr,
+        sortPopularity: false
+    })
+
+}
+
+    
 }
 
 deleteContact = (id) => {
