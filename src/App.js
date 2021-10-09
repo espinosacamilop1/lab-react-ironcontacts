@@ -1,25 +1,48 @@
-import logo from './logo.svg';
+import React from 'react'
 import './App.css';
+import contacts from './contacts.json'
+import Contact from "./components/Contact"
+class App extends React.Component {
+  state = {
+    contactData:  contacts 
+  }
+   
+  
+  // getContactData = (contactData) =>{
+  //   return contactData.map((contact, index) => {
+  //     return (
+  //       <div>
+  //           <tr>
+  //           <td key={contact.name}><p>{contact.name}</p></td>
+  //         </tr>
+  //         <tr>
+  //           <td key={contact.popularity}><p>{contact.popularity}</p></td>
+  //         </tr>
+  //         <tr>
+  //           <td key={contact.picture}> <img className="profImg" src={contact.pictureUrl}></img></td>
+  //         </tr>
+  //       </div>
+  //     )
+  // })
+  // }
+  
+  render (){
+    return (
+      <div className="App">
+      {/* <table>
+           <tr>
+            <th>Picture</th>
+            <th>Name</th>
+            <th>Popularity</th>
+          </tr>
+        {this.getContactData(this.state.contactData)}
+      </table> */}
+      <Contact/>
+      </div>
+    )
+  }
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
 }
 
 export default App;
